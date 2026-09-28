@@ -1,44 +1,48 @@
-Mission 2: Build the Cloud Infrastructure Blueprint
-Mission Overview
-This laboratory activity focused on investigating a Linux server running in a cloud environment using the KillerCoda Playground. The goal was to identify cloud infrastructure components, compare major cloud providers, create a simple cloud architecture diagram, and document the findings using Markdown and GitHub.
+# Mission 5: The Cloud Data Engineer
 
-Objectives
-Explain the major components of cloud infrastructure.
-Investigate hardware and software resources in a Linux environment.
-Identify compute, storage, networking, and operating system resources.
-Compare equivalent services from AWS, Microsoft Azure, and Google Cloud.
-Create a simple cloud infrastructure diagram.
-Practice professional technical documentation using Markdown.
-Cloud Infrastructure Components
-Compute
-The KillerCoda environment provided an Ubuntu Linux server running on a virtualized CPU. The system had one CPU core and provided the processing resources needed to execute commands and workloads.
+## Mission Overview
 
-Storage
-The server had a 19 GB root filesystem mounted at /. Storage provides space for the operating system, applications, files, and other data.
+This laboratory activity focused on understanding cloud storage and deploying an S3-compatible object storage server using MinIO. Using the KillerCoda Playground, I deployed MinIO with Docker, accessed its web console, created a storage bucket, and uploaded a sample file. The activity also helped me understand the differences between Block Storage, File Storage, and Object Storage.
 
-Networking
-The server had network interfaces with IP addresses including 172.30.1.2 and 172.17.0.1. Networking allows the cloud server to communicate with other systems and services.
+## Objectives
 
-Operating System
-The server was running Ubuntu 24.04.4 LTS with the Linux kernel version 6.8.0-136-generic.
+- Explain the differences between Block Storage, File Storage, and Object Storage.
+- Deploy an S3-compatible Object Storage server using MinIO.
+- Use Docker to run a cloud storage server.
+- Access the MinIO Web Console using port forwarding.
+- Create a storage bucket and upload an object.
+- Document cloud storage operations using Markdown.
+- Practice professional technical documentation using GitHub.
 
-Tools Used
-KillerCoda Playground
-Ubuntu Linux terminal
-GitHub
-Microsoft PowerPoint
-Web browser
-Linux Commands Executed
-Command	Purpose
-cat /etc/os-release	Identified the operating system and version
-uname -r	Checked the Linux kernel version
-lscpu	Investigated CPU and system architecture
-free -h	Checked RAM and swap memory
-df -h	Investigated disk usage and mounted filesystems
-hostname	Identified the server hostname
-hostname -I	Displayed the server IP addresses
-Skills Learned
-I learned how to investigate a Linux cloud environment using basic system administration commands. I also practiced identifying cloud infrastructure components, documenting technical information in Markdown, comparing cloud provider services, creating an infrastructure diagram, and organizing a project in GitHub.
+## Cloud Storage Components
 
-Challenges Encountered
-One challenge was understanding how the KillerCoda environment represents a cloud server and how the Linux resources relate to cloud infrastructure concepts. I also had to learn how to organize files and folders correctly in GitHub, including creating the screenshots folder and uploading the cloud architecture diagram.
+### Block Storage
+
+Block Storage stores data in fixed-size blocks that can be accessed individually. It is commonly used for operating systems, databases, and applications that require fast disk access.
+
+### File Storage
+
+File Storage organizes data into files and folders through a shared file system. It is useful for shared documents, file systems, and applications that need access to shared files.
+
+### Object Storage
+
+Object Storage stores data as objects together with metadata and a unique identifier. It is commonly used for images, videos, backups, documents, and other types of unstructured data.
+
+For the client's photo-sharing application, Object Storage is the best choice because it can store large amounts of user-uploaded images and can scale as the number of files increases.
+
+## Tools Used
+
+- KillerCoda Playground
+- Ubuntu Linux
+- Docker
+- MinIO
+- GitHub
+- Web browser
+- Markdown
+
+## Docker Deployment
+
+The MinIO server was deployed using Docker with the following command:
+
+```bash
+docker run -d -p 9000:9000 -p 9001:9001 --name minio-server -e "MINIO_ROOT_USER=cloudadmin" -e "MINIO_ROOT_PASSWORD=CloudNova2026!" minio/minio server /data --console-address ":9001"
